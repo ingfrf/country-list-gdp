@@ -1,4 +1,4 @@
-package com.enmivida.gdp.model;
+package com.enmivida.gdp.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

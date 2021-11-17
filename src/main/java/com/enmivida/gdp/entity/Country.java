@@ -1,4 +1,4 @@
-package com.enmivida.gdp.model;
+package com.enmivida.gdp.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,7 +39,7 @@ public class Country {
     @Size(max = 45)
     private String govermentForm;
     private String headOfState;
-    private Integer capital;
+    private City capital;
     @NotNull
     @Size(max = 2, min = 2)
     private String code2;
