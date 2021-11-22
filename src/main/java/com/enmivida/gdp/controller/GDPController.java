@@ -1,6 +1,6 @@
 package com.enmivida.gdp.controller;
 
-import com.enmivida.gdp.entity.Country;
+import com.enmivida.gdp.dto.CountryDTO;
 import com.enmivida.gdp.service.CountryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class GDPController {
     private final CountryService countryService;
 
     @GetMapping("/countries")
-    public List<Country> findAllCountries() {
+    public List<CountryDTO> findAllCountries() {
         return countryService.findAllCountries();
     }
 

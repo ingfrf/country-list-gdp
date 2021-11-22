@@ -18,7 +18,21 @@ public class CountryDAOImpl implements CountryDAO {
     @Override
     public List<Country> findAllCountries() {
         StringJoiner query = new StringJoiner(" ");
-        query.add("select Code, Name, Continent, Region, SurfaceArea");
+        query.add("SELECT `country`.`Code`,\n" +
+                "    `country`.`Name`,\n" +
+                "    `country`.`Continent`,\n" +
+                "    `country`.`Region`,\n" +
+                "    `country`.`SurfaceArea`,\n" +
+                "    `country`.`IndepYear`,\n" +
+                "    `country`.`Population`,\n" +
+                "    `country`.`LifeExpectancy`,\n" +
+                "    `country`.`GNP`,\n" +
+                "    `country`.`GNPOld`,\n" +
+                "    `country`.`LocalName`,\n" +
+                "    `country`.`GovernmentForm`,\n" +
+                "    `country`.`HeadOfState`,\n" +
+                "    `country`.`Capital`,\n" +
+                "    `country`.`Code2`\n");
         query.add("from world.country");
         return jdbcTemplate.query(query.toString(), new CountryRowMapper());
     }

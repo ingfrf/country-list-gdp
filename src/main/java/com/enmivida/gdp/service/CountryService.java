@@ -1,9 +1,9 @@
 package com.enmivida.gdp.service;
 
-import com.enmivida.gdp.entity.Country;
+import com.enmivida.gdp.dto.CountryDTO;
 
 import java.util.List;
 
 public interface CountryService {
-    List<Country> findAllCountries();
+    List<CountryDTO> findAllCountries();
 }
