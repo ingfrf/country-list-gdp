@@ -3,6 +3,8 @@ package com.enmivida.gdp.controller;
 import com.enmivida.gdp.dto.CountryDTO;
 import com.enmivida.gdp.service.CountryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +19,18 @@ public class GDPController {
     private final CountryService countryService;
 
     @GetMapping("/countries")
-    public List<CountryDTO> findAllCountries() {
-        return countryService.findAllCountries();
+    public ResponseEntity<List<CountryDTO>> findAllCountries() {
+        return new ResponseEntity<>(countryService.findAllCountries(), HttpStatus.OK);
+    }
+
+    @GetMapping("/regions")
+    public ResponseEntity<List<String>> findAllRegions() {
+        return new ResponseEntity<>(countryService.findAllRegions(),HttpStatus.OK);
+    }
+
+    @GetMapping("/continents")
+    public ResponseEntity<List<String>> findAllContinents() {
+        return new ResponseEntity<>(countryService.findAllContinents(), HttpStatus.OK);
     }
 
 }

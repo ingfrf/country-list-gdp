@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CountryService {
     List<CountryDTO> findAllCountries();
+    List<String> findAllRegions();
+    List<String> findAllContinents();
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CountryDAO {
     List<Country> findAllCountries();
+    List<String> findAllRegions();
+    List<String> findAllContinents();
 }

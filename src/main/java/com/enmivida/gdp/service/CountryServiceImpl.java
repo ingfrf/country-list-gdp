@@ -20,4 +20,14 @@ public class CountryServiceImpl implements CountryService {
     public List<CountryDTO> findAllCountries() {
         return countryDAO.findAllCountries().stream().map(mapper::countryToCountryDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public List<String> findAllRegions() {
+        return countryDAO.findAllRegions();
+    }
+
+    @Override
+    public List<String> findAllContinents() {
+        return countryDAO.findAllContinents();
+    }
 }

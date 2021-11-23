@@ -36,4 +36,20 @@ public class CountryDAOImpl implements CountryDAO {
         query.add("from world.country");
         return jdbcTemplate.query(query.toString(), new CountryRowMapper());
     }
+
+    @Override
+    public List<String> findAllRegions() {
+        StringJoiner query = new StringJoiner(" ");
+        query.add("select distinct (Region)");
+        query.add("from world.country");
+        return jdbcTemplate.queryForList(query.toString(), String.class);
+    }
+
+    @Override
+    public List<String> findAllContinents() {
+        StringJoiner query = new StringJoiner(" ");
+        query.add("select distinct (Continent)");
+        query.add("from world.country");
+        return jdbcTemplate.queryForList(query.toString(), String.class);
+    }
 }
