@@ -1,6 +1,7 @@
 package com.enmivida.gdp.controller;
 
 import com.enmivida.gdp.dto.CountryDTO;
+import com.enmivida.gdp.model.FindCountryParams;
 import com.enmivida.gdp.service.CountryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,10 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,25 +24,25 @@ public class GDPController {
     @Value("${country.page.size}")
     private Integer pageSize;
 
-    @GetMapping("/countries")
-    public ResponseEntity<Page<CountryDTO>> findCountries(@RequestParam Integer page) {
+    @PostMapping("/countries")
+    public ResponseEntity<Page<CountryDTO>> findCountries(@RequestBody FindCountryParams findCountryParams) {
         // TODO sort field
         //PageRequest pageable = PageRequest.of(0, 5, Sort.Direction.fromString("DESC"), "USERNAME");
-        PageRequest pageable = PageRequest.of(page, pageSize, Sort.Direction.fromString("ASC"), "CODE");
+        PageRequest pageable = PageRequest.of(findCountryParams.getPage(), pageSize, Sort.Direction.fromString("ASC"), "CODE");
 
-        Page<CountryDTO> pagedCountries = countryService.findCountries(pageable);
+        Page<CountryDTO> pagedCountries = countryService.findCountries(findCountryParams, pageable);
 
         return new ResponseEntity<Page<CountryDTO>>(pagedCountries, HttpStatus.OK);
     }
 
     @GetMapping("/regions")
-    public ResponseEntity<List<String>> findAllRegions() {
-        return new ResponseEntity<>(countryService.findAllRegions(),HttpStatus.OK);
+    public ResponseEntity<List<String>> findRegions(@RequestParam String continent) {
+        return new ResponseEntity<>(countryService.findRegions(continent),HttpStatus.OK);
     }
 
     @GetMapping("/continents")
-    public ResponseEntity<List<String>> findAllContinents() {
-        return new ResponseEntity<>(countryService.findAllContinents(), HttpStatus.OK);
+    public ResponseEntity<List<String>> findAllContinents(@RequestParam String region) {
+        return new ResponseEntity<>(countryService.findContinents(region), HttpStatus.OK);
     }
 
 }
