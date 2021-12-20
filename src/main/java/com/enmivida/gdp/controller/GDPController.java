@@ -1,7 +1,11 @@
 package com.enmivida.gdp.controller;
 
+import com.enmivida.gdp.dto.CityDTO;
 import com.enmivida.gdp.dto.CountryDTO;
+import com.enmivida.gdp.dto.CountryLanguageDTO;
 import com.enmivida.gdp.model.FindCountryParams;
+import com.enmivida.gdp.service.CityService;
+import com.enmivida.gdp.service.CountryLanguageService;
 import com.enmivida.gdp.service.CountryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +24,8 @@ import java.util.List;
 public class GDPController {
 
     private final CountryService countryService;
+    private final CityService cityService;
+    private final CountryLanguageService countryLanguageService;
 
     @Value("${country.page.size}")
     private Integer pageSize;
@@ -37,12 +43,22 @@ public class GDPController {
 
     @GetMapping("/regions")
     public ResponseEntity<List<String>> findRegions(@RequestParam String continent) {
-        return new ResponseEntity<>(countryService.findRegions(continent),HttpStatus.OK);
+        return new ResponseEntity<>(countryService.findRegions(continent), HttpStatus.OK);
     }
 
     @GetMapping("/continents")
     public ResponseEntity<List<String>> findAllContinents(@RequestParam String region) {
         return new ResponseEntity<>(countryService.findContinents(region), HttpStatus.OK);
+    }
+
+    @GetMapping("/cities")
+    public ResponseEntity<List<CityDTO>> findAllCitiesByCountry(@RequestParam String code) {
+        return new ResponseEntity<>(cityService.findCities(code), HttpStatus.OK);
+    }
+
+    @GetMapping("/languages")
+    public ResponseEntity<List<CountryLanguageDTO>> findAllLanguagesByCountry(@RequestParam String code) {
+        return new ResponseEntity<>(countryLanguageService.findLanguages(code), HttpStatus.OK);
     }
 
 }

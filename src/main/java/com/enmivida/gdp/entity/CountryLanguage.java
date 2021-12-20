@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @Builder
 @Data
 public class CountryLanguage {
-    private Country country;
+    private String countryCode;
     @NotNull @Size(max = 30)
     private String language;
     @NotNull @Size(max = 1)

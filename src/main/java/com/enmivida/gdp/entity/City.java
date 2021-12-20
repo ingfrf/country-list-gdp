@@ -17,7 +17,8 @@ public class City {
     private Long id;
     @NotNull @Size(max = 35)
     private String name;
-    private Country country;
+    //private Country country;
+    private String countryCode;
     @NotNull @Size(max = 20)
     private String district;
     @NotNull
