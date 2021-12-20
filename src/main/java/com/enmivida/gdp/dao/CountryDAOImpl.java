@@ -34,6 +34,7 @@ public class CountryDAOImpl implements CountryDAO {
             query.add("where Continent=?");
             return jdbcTemplate.queryForList(query.toString(), String.class, continent);
         }
+        log.warn("findRegions");
         return jdbcTemplate.queryForList(query.toString(), String.class);
     }
 
@@ -46,6 +47,7 @@ public class CountryDAOImpl implements CountryDAO {
             query.add("where Region=?");
             return jdbcTemplate.queryForList(query.toString(), String.class, region);
         }
+        log.warn("findContinents");
         return jdbcTemplate.queryForList(query.toString(), String.class);
     }
 
@@ -99,6 +101,7 @@ public class CountryDAOImpl implements CountryDAO {
         query.add("OFFSET").add(Long.toString(pageable.getOffset()));
 
         List<Country> countryList = namedParameterJdbcTemplate.query(query.toString(), parameters, new CountryRowMapper());
+        log.warn("findCountries");
         return new PageImpl<Country>(countryList, pageable, total);
     }
 

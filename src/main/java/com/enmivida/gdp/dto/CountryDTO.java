@@ -15,4 +15,11 @@ public class CountryDTO {
     private String continent;
     private String region;
     private Double surfaceArea;
+    private String headOfState;
+    private String govermentForm;
+    private String localName;
+    private Short indepYear;
+    private Long population;
+    private Double lifeExpectancy;
+    private String code2;
 }
